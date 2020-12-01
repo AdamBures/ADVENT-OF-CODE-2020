@@ -1,23 +1,29 @@
 import os
 import itertools
-os.chdir("Text input")
-lst = []
 
-def report_repair(lst):
-    year = 2020
-    length = 2
-    for numbers in itertools.permutations(lst,length):
-        if sum(numbers) == 2020:
-            result = numbers[0]*numbers[1]
-            print(result)
-            break
+class Main(object):
 
-def read_file():
-    file = open("report_repair.txt")
-    for number in file:
-        lst.append(int(number))
-    report_repair(lst)
+    os.chdir("Text input")
+
+    def __init__(self):
+        self.year = 2020
+        self.length = 2
+        self.lst = []
+        self.path = "report_repair.txt"
+        self.result = 0
+
+    def report_repair(self, lst):
+        for self.numbers in itertools.permutations(lst,self.length):
+            if sum(self.numbers) == self.year:
+                self.result = self.numbers[0] * self.numbers[1]
+                print(self.result)
+                break
+    
+    def read_file(self):
+        with open(self.path, "r") as file:
+            for number in file:
+                self.lst.append(int(number))
+            Main().report_repair(self.lst)
 
 if __name__ == "__main__":
-    report_repair(lst)
-    read_file()
+    Main().read_file()
